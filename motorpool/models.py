@@ -12,6 +12,16 @@ class Brand(models.Model):
         verbose_name = 'Бренд'
 
 
+class Option(models.Model):
+    title = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = 'Опции'
+
+
 class Auto(models.Model):
     AUTO_CLASS_ECONOMY = 'e'
     AUTO_CLASS_COMFORT = 'c'
@@ -22,6 +32,10 @@ class Auto(models.Model):
         (AUTO_CLASS_COMFORT, 'comfort'),
         (AUTO_CLASS_BUSINESS, 'business'),
     )
+
+    brand = models.ForeignKey(Brand, null=True, on_delete=models.CASCADE)
+    options = models.ManyToManyField(Option)
+
     number = models.CharField(max_length=15)
     description = models.TextField(max_length=500, default='', blank=True)
     year = models.PositiveSmallIntegerField(null=True)
@@ -33,5 +47,3 @@ class Auto(models.Model):
     class Meta:
         verbose_name_plural = 'Автомобили'
         verbose_name = 'Автомобиль'
-
-
