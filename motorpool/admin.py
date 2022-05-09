@@ -11,6 +11,12 @@ class BrandAdmin(admin.ModelAdmin):
 class AutoAdmin(admin.ModelAdmin):
     pass
 
+
 @admin.register(models.Option)
 class OptionAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(models.VehiclePassport)
+class VehiclePassportAdmin(admin.ModelAdmin):
     pass
